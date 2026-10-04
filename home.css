@@ -1,0 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f172a;
+  color: #0f172a;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  left: 20%;
+  background: radial-gradient(circle, #d4af37 0%, transparent 70%);
+}
+
+.orb-2 {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  right: 10%;
+  background: radial-gradient(circle, #1e3a8a 0%, #d4af37 50%, transparent 75%);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(7, 10, 20, 0.8);
+  backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 10;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.emblem-symbol {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8cd8c;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.emblem-symbol svg {
+  width: 20px;
+  height: 20px;
+}
+
+.brand-name {
+  font-family: 'Merriweather', serif;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  font-size: 1.15rem;
+  background: linear-gradient(135deg, #000 0%, #e8cd8c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.back-link:hover {
+  color: #e8cd8c;
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 85px);
+  padding: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.welcome-box {
+  text-align: center;
+  max-width: 650px;
+}
+
+.tag-status {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.portal-heading {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: linear-gradient(135deg, #000 0%, #f7e7c4 40%, #d4af37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.8rem;
+}
+
+.portal-subheading {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  margin-bottom: 2.5rem;
+}
+
+.awaiting-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.pulsing-radar {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #d4af37;
+  margin: 0 auto 1.2rem;
+  box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  animation: pulseRadar 1.8s infinite;
+}
+
+@keyframes pulseRadar {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+  70% { box-shadow: 0 0 0 16px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.awaiting-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.awaiting-card p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}

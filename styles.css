@@ -1,0 +1,432 @@
+/* ========================================================
+   NYAYAPRAMAAN - Full Screen Video Welcome Experience
+   ======================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  color: #0f172a;
+}
+
+/* ================= Full Screen Video Container ================= */
+.fullscreen-video-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+  background: #000;
+}
+
+.fullscreen-video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.15); /* Scale up by 15% to crop out the Gemini watermark */
+  transform-origin: center center;
+}
+
+/* Subtle cinematic overlay */
+.cinematic-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.15) 100%);
+    pointer-events: none;
+  }
+
+/* ================= Centered Typography Overlay ================= */
+.hero-overlay {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  pointer-events: none; /* Allows click-through except on interactive children */
+}
+
+.hero-content {
+    transform: translateY(-25vh); /* Moved significantly higher */
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    animation: heroEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+/* NYAYAPRAMAAN in Big Font */
+.brand-title {
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: clamp(2.8rem, 7.5vw, 6.2rem);
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+    animation: floatTitle3D 6s ease-in-out infinite, letterSpacingIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    margin: 0;
+  }
+
+/* “Where Law Meets Evidence.” in Small-Medium Font */
+.brand-tagline {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  font-style: italic;
+  font-weight: 500;
+  color: #334155;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.8);
+  opacity: 0.95;
+}
+
+/* ================= Bottom Action: Tap to Start Button ================= */
+.bottom-action-container {
+  position: absolute;
+  bottom: 46px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: auto; /* Enable clicks */
+  animation: fadeInUp 1.5s ease-out;
+}
+
+
+
+.btn-glow-pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  opacity: 0.7;
+  animation: shineSweep 3s infinite linear;
+}
+
+.btn-text {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.24em;
+  color: #fce7b2;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.btn-arrow {
+  width: 18px;
+  height: 18px;
+  color: #fce7b2;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+/* Hover & Active States */
+.tap-to-start-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: rgba(20, 28, 52, 0.8);
+  border-color: #f7e7c4;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(212, 175, 55, 0.45);
+}
+
+.tap-to-start-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.tap-to-start-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Fade In Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shineSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ================= Responsive Adjustments ================= */
+@media (max-width: 768px) {
+  .bottom-action-container {
+    bottom: 34px;
+  }
+  
+  
+
+  .btn-text {
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+
+.lawyer-intro-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideUpFade 1.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.lawyer-intro-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #f59e0b;
+  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4);
+  animation: floatBounce 3s ease-in-out infinite;
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+.tap-to-start-btn {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  color: #0f172a !important;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 900 !important;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.5) !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tap-to-start-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 15px 40px -10px rgba(245, 158, 11, 0.8) !important;
+}
+
+.tap-to-start-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-20deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
+
+
+
+
+.tagline-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+.tagline-line {
+  height: 2px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, #fbbf24);
+}
+.tagline-wrapper .tagline-line:last-child {
+  background: linear-gradient(270deg, transparent, #fbbf24);
+}
+.tagline-wrapper .brand-tagline {
+  color: #f8fafc;
+  font-family: 'Merriweather', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+
+
+.scales-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -30px; /* Negative margin to merge with title */
+  position: relative;
+  z-index: 2;
+  animation: slideDownFade 1.5s ease-out forwards;
+}
+
+.scales-intro-icon {
+    width: 140px;
+    height: auto;
+    mix-blend-mode: color-dodge; /* Better for non-black dark backgrounds */
+    filter: contrast(1.8) brightness(1.1) saturate(1.2) drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+    animation: floatGentle 4s ease-in-out infinite;
+    position: relative;
+    z-index: 5;
+  }
+
+@keyframes slideDownFade {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.brand-silver {
+  background: linear-gradient(180deg, #f8f9fa 0%, #a3a9b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: textPulseSilver 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-gold {
+  background: linear-gradient(180deg, #fef0a5 0%, #c49925 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: textPulseGold 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes textPulseSilver {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(176, 181, 186, 0.2)) brightness(1); }
+  50% { filter: drop-shadow(0 0 20px rgba(176, 181, 186, 0.5)) brightness(1.2); }
+}
+
+@keyframes textPulseGold {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2)) brightness(1); }
+  50% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5)) brightness(1.2); }
+}
+
+
+
+
+/* Light sweep reflection across the whole title */
+.brand-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-25deg);
+  animation: textShineSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: overlay;
+}
+
+@keyframes textShineSweep {
+  0% { left: -150%; }
+  25% { left: 200%; }
+  100% { left: 200%; }
+}
+
+.brand-silver, .brand-gold {
+  position: relative;
+}
+
+/* Add a glowing underline or magical particles */
+.tagline-wrapper {
+  animation: glowPulseTagline 4s ease-in-out infinite;
+}
+@keyframes glowPulseTagline {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.3)); }
+  50% { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.8)); }
+}
+
+
+@keyframes heroEntrance {
+  0% { opacity: 0; transform: translateY(-15vh) scale(0.9); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(-25vh) scale(1); filter: blur(0); }
+}
+
+
+
+@keyframes floatTitle3D {
+  0%, 100% { transform: rotateX(0deg) rotateY(0deg) translateY(0); }
+  25% { transform: rotateX(2deg) rotateY(1deg) translateY(-3px); }
+  75% { transform: rotateX(-2deg) rotateY(-1deg) translateY(3px); }
+}
+
+
+@keyframes letterSpacingIn {
+  0% { letter-spacing: -0.05em; opacity: 0; }
+  100% { letter-spacing: 0.1em; opacity: 1; }
+}
